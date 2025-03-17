@@ -1,1 +1,4 @@
 .env
+project/backend/.env
+project/backend/vendor
+project/frontend/node_modules
