@@ -2,6 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+use App\Config\Database;
 use App\Core\Kernel;
 use Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -9,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
+
+$entityManager = Database::getEntityManager();
 
 $apiPrefix = '/api';
 
@@ -22,9 +25,6 @@ $kernel = new Kernel();
 
 $container = $kernel->getContainer();
 
-//dd($container);
-
-// /Captura a requisição HTTP
 $request = Request::createFromGlobals();
 
 $context = new RequestContext();
