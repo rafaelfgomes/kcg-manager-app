@@ -8,12 +8,13 @@ use stdClass;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
+    private EntityRepository $repository;
+
     public function __construct(
         private EntityManager $entityManager,
-        private EntityRepository $repository,
         string $entityClass
     ) {
-        $this->repository = $entityManager->getRepository($entityClass);
+        $this->repository = $this->entityManager->getRepository($entityClass);
     }
 
     public function getAll(): array

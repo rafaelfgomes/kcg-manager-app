@@ -28,10 +28,11 @@ function createRoute(
 function errorExceptionResponse(
     bool $isRouteFileApi,
     string $message,
+    array $trace,
     int $errorCode = Response::HTTP_INTERNAL_SERVER_ERROR
 ): Response {
     if ($isRouteFileApi) {
-        return new JsonResponse(['error' => $message, 'code' => $errorCode], $errorCode);
+        return new JsonResponse(['error' => $message, 'code' => $errorCode, 'trace' => $trace], $errorCode);
     }
 
     ob_start(function() use ($message) {

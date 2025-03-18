@@ -16,7 +16,9 @@ class User
         #[ORM\Column(type: "string", length: 70)]
         private string $name,
         #[ORM\Column(type: "string", length: 50, unique: true)]
-        private string $email
+        private string $email,
+        #[ORM\OneToOne(targetEntity: Admin::class, mappedBy: "user", cascade: ["persist", "remove"])]
+        private ?Admin $admin = null
     ) {
     }
 }

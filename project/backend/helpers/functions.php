@@ -5,6 +5,11 @@ function env(string $envName): ?string
     return getenv($envName);
 }
 
+function rootPath(): string
+{
+    return dirname(__DIR__);   
+}
+
 function getHtmlTemplate(?string $message = ''): string {
     $text =  $message ?: 'KCG App';
 
