@@ -7,13 +7,13 @@ $routes = new RouteCollection();
 
 $routes->add('api.index', createRoute('/api', 'IndexApiController'));
 
-$routes->add('sysusers.all', createRoute('/api/sysusers', 'SysUsers\GetAllSysUsersController'));
+$routes->add('users.all', createRoute('/api/users', 'User\GetAllUsersController'));
 
 $routes->add(
-    'sysusers.create',
+    'users.create',
     createRoute(
-        '/api/sysusers',
-        'SysUsers\CreateSysUserController',
+        '/api/users',
+        'User\CreateUserController',
         [Request::METHOD_POST]
     )
 );
