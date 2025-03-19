@@ -2,7 +2,7 @@
 
 namespace App\Services\User;
 
-use App\DTO\Collections\UserCollection;
+use App\DTO\User\UserCollection;
 use App\Repositories\User\Contracts\UserRepositoryInterface;
 use App\Services\User\Contracts\GetAllUsersServiceInterface;
 

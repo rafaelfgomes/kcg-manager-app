@@ -2,7 +2,7 @@
 
 namespace App\Services\User;
 
-use App\DTO\Resources\UserDTO;
+use App\DTO\User\UserDTO;
 use App\Repositories\User\Contracts\UserRepositoryInterface;
 use App\Services\User\Contracts\GetUserByEmailServiceInterface;
 
@@ -14,7 +14,6 @@ class GetUserByEmailService implements GetUserByEmailServiceInterface
 
     public function execute(string $email): ?array
     {
-        dd($email);
         $user = $this->userRepository->findByEmail($email);
 
         if (! $user) {

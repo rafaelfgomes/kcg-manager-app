@@ -1,8 +1,6 @@
 <?php
 
-namespace App\DTO\Collections;
-
-use App\DTO\Resources\UserDTO;
+namespace App\DTO\User;
 
 class UserCollection
 {

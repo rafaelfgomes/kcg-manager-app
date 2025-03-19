@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\Resources;
+namespace App\DTO\User;
 
 use App\Models\User;
 

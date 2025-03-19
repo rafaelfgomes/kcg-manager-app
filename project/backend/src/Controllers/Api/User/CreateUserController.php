@@ -16,8 +16,6 @@ class CreateUserController
     public function __invoke(Request $request): JsonResponse
     {
         try {
-            dd($request->getContent());
-
             $data = json_decode($request->getContent(), true);
 
             $user = $this->createUserService->execute($data);
