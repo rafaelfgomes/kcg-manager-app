@@ -31,19 +31,27 @@ $routes = require $routeFile;
 $matcher = new UrlMatcher($routes, $context);
 
 try {
-    $method = '__invoke';
+    $args = [];
+
+    $controllerMethod = '__invoke';
 
     $parameters = $matcher->match($request->getPathInfo());
 
     $controllerClass = $parameters['_controller'];
 
     if (str_contains($controllerClass, '@')) {
-        [$controllerClass, $method] = explode('@', $controllerClass);
+        [$controllerClass, $controllerMethod] = explode('@', $controllerClass);
     }
 
     $controller = $container->get($controllerClass);
 
-    $response = call_user_func([$controller, $method]);
+    unset($parameters['_controller']);
+    unset($parameters['_route']);
+
+    $response = call_user_func_array(
+        [$controller, $controllerMethod],
+        array_merge(array_values($parameters), [$request])
+    );
 
     if ($isRouteFileApi && $response instanceof JsonResponse) {
         $response = new JsonResponse(

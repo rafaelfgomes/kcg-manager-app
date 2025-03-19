@@ -1,6 +1,6 @@
 <?php
 
-use App\Config\Database;
+$connectionParams = require_once rootPath() . '/database/config.php';
 
 return [
     'table_storage' => [
@@ -9,15 +9,9 @@ return [
         'version_column_length' => 191,
         'executed_at_column_name' => 'executed_at',
     ],
-
     'migrations_paths' => [
         'App\Migrations' => 'database/migrations', // Place where the migrations is saved
     ],
-
     'all_or_nothing' => true,
     'check_database_platform' => true,
-    'check_database_platform' => true,
-    'organize_migrations' => 'none',
-    'connection' => null,
-    'em' => null,
 ];

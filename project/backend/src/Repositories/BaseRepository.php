@@ -8,7 +8,7 @@ use stdClass;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-    private EntityRepository $repository;
+    protected EntityRepository $repository;
 
     public function __construct(
         private EntityManager $entityManager,

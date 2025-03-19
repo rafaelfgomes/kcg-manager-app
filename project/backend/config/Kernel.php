@@ -29,7 +29,8 @@ class Kernel {
             'Repositories' => 'App\Repositories',
             'Services' => 'App\Services',
             'Models' => 'App\Models',
-            'Controllers' => 'App\Controllers'
+            'Controllers' => 'App\Controllers',
+            'DTO' => 'App\DTO'
         ];
 
         foreach ($directories as $folder => $namespace) {

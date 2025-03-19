@@ -4,5 +4,5 @@ namespace App\Services\User\Contracts;
 
 interface GetAllUsersServiceInterface
 {
-    public function listAllUsers(): array;
+    public function listAllUsers(): ?array;
 }
