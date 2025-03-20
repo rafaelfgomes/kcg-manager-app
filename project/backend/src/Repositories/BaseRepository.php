@@ -18,6 +18,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function getAll(): array
     {
+        return $this->repository->findBy(['deletedAt' => null]);
+    }
+
+    public function getAllWithDeleted(): array
+    {
         return $this->repository->findAll();
     }
 
