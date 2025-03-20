@@ -19,11 +19,9 @@ class CreateAdminController {
         try {
             $data = json_decode($request->getContent(), true);
 
-            $admin = $this->createAdminService->execute($data);
+            $response = $this->createAdminService->execute($data);
 
-            return new JsonResponse([
-                'message' => 'Admin ' . $admin['name'] . ' cadastrado com sucesso'
-            ], Response::HTTP_CREATED);
+            return new JsonResponse($response, Response::HTTP_CREATED);
         } catch (Exception $e) {
             throw $e;
         }

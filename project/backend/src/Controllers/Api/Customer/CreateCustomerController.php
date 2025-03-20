@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Controllers\Api\User;
+namespace App\Controllers\Api\Customer;
 
-use App\Services\User\Contracts\CreateUserServiceInterface;
+use App\Services\Customer\Contracts\CreateCustomerServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateUserController
+class CreateCustomerController
 {
     public function __construct(
-        private CreateUserServiceInterface $createUserService
+        private CreateCustomerServiceInterface $createCustomerService
     ) {}
 
     public function __invoke(Request $request): JsonResponse
@@ -18,9 +18,9 @@ class CreateUserController
         try {
             $data = json_decode($request->getContent(), true);
 
-            $user = $this->createUserService->execute($data);
+            $response = $this->createCustomerService->execute($data);
 
-            return new JsonResponse(['message' => 'Usuário ' . $user['name'] . ' cadastrado com sucesso']);
+            return new JsonResponse($response);
         } catch (Exception $e) {
             throw $e;
         }

@@ -2,38 +2,45 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "admins")]
 class Admin extends Model
 {
-    #[ORM\Column(type: "string", length: 150)]
-    private string $password;
-        
-    #[ORM\OneToOne(targetEntity: User::class, inversedBy: "admin")]
-    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
-    private User $user;
+    public function __construct(
+        #[ORM\Column(type: "string", length: 150)]
+        private string $name,
 
-    public function __construct(string $password, User $user, ?int $id = null)
+        #[ORM\Column(type: "string", length: 50, unique: true)]
+        private string $email,
+
+        #[ORM\Column(type: "string", length: 150)]
+        private string $password,
+
+        ?int $id = null)
     {
-        $now = Carbon::now();
+        parent::__construct($id);
 
-        parent::__construct($now, $id);
+        $this->name = $name;
+
+        $this->email = $email;
         
         $this->password = $password;
+    }
 
-        $this->user = $user;
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     public function getPassword()
     {
         return $this->password;
-    }
-
-    public function getUser()
-    {
-        return $this->user;
     }
 }

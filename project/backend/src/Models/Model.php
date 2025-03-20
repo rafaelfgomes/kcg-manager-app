@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,19 +16,17 @@ abstract class Model
     #[ORM\Column(type: "datetime", name: "created_at")]
     protected DateTime $createdAt;
 
-    #[ORM\Column(type: "datetime", name: "updated_at")]
+    #[ORM\Column(type: "datetime", name: "updated_at", nullable: true)]
     protected DateTime $updatedAt;
     
     #[ORM\Column(type: "datetime", name: "deleted_at", nullable: true)]
     protected ?DateTime $deletedAt = null;
 
-    public function __construct(DateTime $now, ?int $id = null)
+    public function __construct(?int $id = null)
     {
         $this->id = $id;
 
-        $this->createdAt = $now;
-
-        $this->updatedAt = $now;
+        $this->createdAt = Carbon::now();
     }
 
     public function getId(): ?int

@@ -9,7 +9,7 @@ class AdminCollection
         $adminCollection = [];
 
         foreach ($admins as $admin) {
-            array_push($adminCollection, AdminDTO::fillDTOfromEntity($admin));
+            array_push($adminCollection, AdminDTO::fillDatafromEntity($admin));
         }
 
         return $adminCollection;

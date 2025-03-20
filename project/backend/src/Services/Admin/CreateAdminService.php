@@ -3,7 +3,6 @@
 namespace App\Services\Admin;
 
 use App\DTO\Admin\AdminDTO;
-use App\DTO\User\UserDTO;
 use App\Repositories\Admin\Contracts\AdminRepositoryInterface;
 use App\Services\Admin\Contracts\CreateAdminServiceInterface;
 use App\Support\Hash;
@@ -14,16 +13,20 @@ class CreateAdminService implements CreateAdminServiceInterface
         private AdminRepositoryInterface $adminRepository
     ) {}
 
-    public function execute(array $data): ?array
+    public function execute(array &$data): ?array
     {
-        $password = Hash::make($data['password']);
+        $data['password'] = Hash::make($data['password']);
 
-        unset($data['password']);
+        $admin = AdminDTO::fillEntity($data);
 
-        $userDTO = UserDTO::fillUserEntity($data);
+        $newAdmin = $this->adminRepository->create($admin);
 
-        $newAdmin = $this->adminRepository->createNewAdmin($userDTO, $password);
+        if (! $newAdmin) {
+            return null;
+        }
 
-        return AdminDTO::fillDTOfromEntity($newAdmin);
+        return [
+            'message' => $newAdmin->getName() . ' cadastrado com sucesso'
+        ];
     }
 }

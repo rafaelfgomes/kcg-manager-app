@@ -25,6 +25,10 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         return $this->repository->find($id);
     }
+
+    public function findByEmail(string $email): ?object {
+        return $this->repository->findOneBy(['email' => $email]);
+    }
     
     public function create(object $model): object
     {

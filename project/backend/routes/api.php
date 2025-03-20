@@ -1,45 +1,51 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 $routes = new RouteCollection();
 
-$prefixControllerNamespace = 'App\Controllers\Api\\';
+// $prefixControllerNamespace = 'App\Controllers\Api\\';
 
 $routes->add('api.index', createRoute('/api', 'IndexApiController'));
 
 #####
-# User routes
+# Customer routes
 #####
-$routes->add('user.all', createRoute('/api/users', 'User\GetAllUsersController'));
+$routes->add('customers.all', createRoute('/api/customers', 'Customer\GetAllCustomersController'));
 
 $routes->add(
-    'users.create',
+    'customer.create',
     createRoute(
-        '/api/users',
-        'User\CreateUserController',
+        '/api/customers',
+        'Customer\CreateCustomerController',
         [Request::METHOD_POST]
     )
 );
 
 $routes->add(
-    'user.get-by-email',
+    'customer.search.by-email',
     createRoute(
-        '/api/users/get-by-email/{email}',
-        'User\GetUserByEmailController',
+        '/api/customers/search/by-email/{email}',
+        'Customer\GetCustomerByEmailController',
         [Request::METHOD_GET]
     )
 );
 #####
-# User routes
+# Customer routes (fim)
 #####
 
 #####
 # Admin routes
 #####
-$routes->add('admins.all', createRoute('/api/admins', 'Admin\GetAllAdminsController'));
+$routes->add(
+    'admin.search.by-email',
+    createRoute(
+        '/api/admins/search/by-email/{email}',
+        'Admin\GetAdminByEmailController',
+        [Request::METHOD_GET]
+    )
+);
 
 $routes->add(
     'admin.create',
@@ -50,7 +56,7 @@ $routes->add(
     )
 );
 #####
-# Admin routes
+# Admin routes (fim)
 #####
 
 return $routes;
