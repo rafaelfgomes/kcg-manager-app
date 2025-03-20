@@ -20,6 +20,6 @@ class GetUserByEmailService implements GetUserByEmailServiceInterface
             return null;
         }
 
-        return UserDTO::fromEntity($user);
+        return UserDTO::fillDTOfromEntity($user);
     }
 }

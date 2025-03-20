@@ -1,15 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/vendor/autoload.php';
 
-use Config\Database;
-use Config\Kernel;
-use Dotenv\Dotenv;
+spl_autoload_register(function ($class) {
+    $file = rootPath() . '/src/' . str_replace('\\', '/', $class) . '.php';
 
-Dotenv::createUnsafeImmutable(rootPath())->load();
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 
-$entityManager = Database::getEntityManager();
-
-$kernel = new Kernel($entityManager);
-
-$container = $kernel->getContainer();

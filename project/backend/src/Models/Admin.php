@@ -2,29 +2,40 @@
 
 namespace App\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "admins")]
-class Admin
+class Admin extends Model
 {
-    public function __construct(
-        #[ORM\Id]
-        #[ORM\GeneratedValue]
-        #[ORM\Column(type: "integer")]
-        private int $id,
-        #[ORM\Column(type: "string", length: 150)]
-        private string $password,
-        #[ORM\Column(type: "datetime", name: "created_at")]
-        private DateTime $createdAt,
-        #[ORM\Column(type: "datetime", name: "updated_at")]
-        private DateTime $updatedAt,
-        #[ORM\Column(type: "datetime", name: "deleted_at", nullable: true)]
-        private DateTime $deletedAt,
-        #[ORM\OneToOne(targetEntity: User::class, inversedBy: "admin")]
-        #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "CASCADE")]
-        private User $user
-    ) {
+    #[ORM\Column(type: "string", length: 150)]
+    private string $password;
+        
+    #[ORM\OneToOne(targetEntity: User::class, inversedBy: "admin")]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "CASCADE")]
+    private User $user;
+
+    public function __construct(string $password, User $user)
+    {
+        $now = Carbon::now();
+        
+        $this->password = $password;
+
+        $this->user = $user;
+
+        $this->createdAt = $now;
+
+        $this->updatedAt = $now;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
     }
 }

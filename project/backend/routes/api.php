@@ -10,7 +10,10 @@ $prefixControllerNamespace = 'App\Controllers\Api\\';
 
 $routes->add('api.index', createRoute('/api', 'IndexApiController'));
 
-$routes->add('users.all', createRoute('/api/users', 'User\GetAllUsersController'));
+#####
+# User routes
+#####
+$routes->add('user.all', createRoute('/api/users', 'User\GetAllUsersController'));
 
 $routes->add(
     'users.create',
@@ -27,6 +30,20 @@ $routes->add(
         '/api/users/get-by-email/{email}',
         'User\GetUserByEmailController',
         [Request::METHOD_GET]
+    )
+);
+
+#####
+# Admin routes
+#####
+$routes->add('admins.all', createRoute('/api/admins', 'Admin\GetAllAdminsController'));
+
+$routes->add(
+    'admin.create',
+    createRoute(
+        '/api/admins',
+        'Admin\CreateAdminController',
+        [Request::METHOD_POST]
     )
 );
 

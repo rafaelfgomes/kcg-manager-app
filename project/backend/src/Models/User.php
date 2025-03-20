@@ -2,42 +2,44 @@
 
 namespace App\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "users")]
-class User
+class User extends Model
 {
-    public function __construct(
-        #[ORM\Id]
-        #[ORM\GeneratedValue]
-        #[ORM\Column(type: "integer")]
-        private int $id,
-        #[ORM\Column(type: "string", length: 70)]
-        private string $name,
-        #[ORM\Column(type: "string", length: 50, unique: true)]
-        private string $email,
-        #[ORM\Column(type: "datetime", name: "created_at")]
-        private DateTime $createdAt,
-        #[ORM\Column(type: "datetime", name: "updated_at")]
-        private DateTime $updatedAt,
-        #[ORM\Column(type: "datetime", name: "deleted_at", nullable: true)]
-        private DateTime $deletedAt,
-        #[ORM\OneToOne(targetEntity: Admin::class, mappedBy: "user", cascade: ["persist", "remove"])]
-        private ?Admin $admin = null
-    ) {
+    #[ORM\Column(type: "string", length: 70)]
+    private string $name;
+
+    #[ORM\Column(type: "string", length: 50, unique: true)]
+    private string $email;
+    
+    #[ORM\OneToOne(targetEntity: Admin::class, mappedBy: "user", cascade: ["persist", "remove"])]
+    private ?Admin $admin = null;
+
+    public function __construct(string $name, string $email)
+    {
+        $now = Carbon::now();
+
+        $this->name = $name;
+
+        $this->email = $email;
+        
+        $this->createdAt = $now;
+        
+        $this->updatedAt = $now;
     }
 
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getEmail() {
+    public function getEmail(): string {
         return $this->email;
+    }
+
+    public function getAdmin(): ?Admin {
+        return $this->admin;
     }
 }

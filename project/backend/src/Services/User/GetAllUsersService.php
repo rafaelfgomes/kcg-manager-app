@@ -13,7 +13,7 @@ class GetAllUsersService implements GetAllUsersServiceInterface
     ) {    
     }
 
-    public function listAllUsers(): ?array
+    public function execute(): ?array
     {
         $users = $this->userRepository->getAll();
 

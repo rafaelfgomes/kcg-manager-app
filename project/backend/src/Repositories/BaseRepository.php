@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use stdClass;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
@@ -22,12 +21,12 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->repository->findAll();
     }
 
-    public function findById(int $id): ?stdClass
+    public function findById(int $id): ?object
     {
         return $this->repository->find($id);
     }
     
-    public function create(stdClass $model): stdClass
+    public function create(object $model): object
     {
         $this->entityManager->persist($model);
 
@@ -43,7 +42,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return true;
     }
     
-    public function delete(stdClass $model): bool
+    public function delete(object $model): bool
     {
         $this->entityManager->remove($model);
         

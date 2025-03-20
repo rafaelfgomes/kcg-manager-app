@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Repositories\BaseRepository;
 use App\Repositories\User\Contracts\UserRepositoryInterface;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {

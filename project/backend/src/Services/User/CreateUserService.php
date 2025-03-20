@@ -14,12 +14,14 @@ class CreateUserService implements CreateUserServiceInterface
 
     public function execute(array $data): ?array
     {
-        $user = $this->userRepository->create((object) $data);
+        $newUser = UserDTO::fillUserEntity($data);
+
+        $user = $this->userRepository->create($newUser);
 
         if (! $user) {
             return null;
         }
 
-        return UserDTO::fromEntity((object) $data);
+        return UserDTO::fillDTOfromEntity($user);
     }
 }

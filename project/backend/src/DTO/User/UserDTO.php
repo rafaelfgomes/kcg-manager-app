@@ -13,7 +13,7 @@ class UserDTO
     ) {
     }
 
-    public static function fromEntity(User $user): array
+    public static function fillDTOfromEntity(User $user): array
     {
         $userDTO = new self(
             id: $user->getId(),
@@ -22,5 +22,13 @@ class UserDTO
         );
 
         return (array) $userDTO;
+    }
+
+    public static function fillUserEntity(array $data): User
+    {
+        return new User(
+            name: $data['name'],
+            email: $data['email'],
+        );
     }
 }

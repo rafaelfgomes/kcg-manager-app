@@ -9,7 +9,7 @@ class UserCollection
         $userCollection = [];
 
         foreach ($users as $user) {
-            array_push($userCollection, UserDTO::fromEntity($user));
+            array_push($userCollection, UserDTO::fillDTOfromEntity($user));
         }
 
         return $userCollection;

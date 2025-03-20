@@ -20,7 +20,7 @@ class CreateUserController
 
             $user = $this->createUserService->execute($data);
 
-            return new JsonResponse(['user' => $user]);
+            return new JsonResponse(['message' => 'Usuário ' . $user['name'] . ' cadastrado com sucesso']);
         } catch (Exception $e) {
             throw $e;
         }

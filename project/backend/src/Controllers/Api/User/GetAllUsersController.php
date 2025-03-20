@@ -3,6 +3,7 @@
 namespace App\Controllers\Api\User;
 
 use App\Services\User\Contracts\GetAllUsersServiceInterface;
+use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetAllUsersController
@@ -14,8 +15,12 @@ class GetAllUsersController
 
     public function __invoke()
     {
-        $users = $this->getAllUsersService->listAllUsers();
+        try {
+            $users = $this->getAllUsersService->execute();
 
-        return new JsonResponse(['users' => $users]);
+            return new JsonResponse(['users' => $users]);
+        } catch (Exception $e) {
+            throw $e;
+        }   
     }
 }
