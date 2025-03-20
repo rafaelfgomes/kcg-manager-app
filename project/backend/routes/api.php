@@ -32,6 +32,9 @@ $routes->add(
         [Request::METHOD_GET]
     )
 );
+#####
+# User routes
+#####
 
 #####
 # Admin routes
@@ -46,5 +49,8 @@ $routes->add(
         [Request::METHOD_POST]
     )
 );
+#####
+# Admin routes
+#####
 
 return $routes;

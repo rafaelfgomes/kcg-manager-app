@@ -3,7 +3,6 @@
 namespace App\DTO\Admin;
 
 use App\Models\Admin;
-use App\Support\Hash;
 
 class AdminDTO
 {
@@ -25,7 +24,7 @@ class AdminDTO
     public static function fillAdminEntity(array $data): Admin
     {
         return new Admin(
-            password: Hash::make($data['password']),
+            password: $data['password'],
             user: $data['user'],
         );
     }

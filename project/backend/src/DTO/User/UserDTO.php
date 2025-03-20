@@ -29,6 +29,7 @@ class UserDTO
         return new User(
             name: $data['name'],
             email: $data['email'],
+            id: $data['id'] ?? null
         );
     }
 }

@@ -15,20 +15,18 @@ class User extends Model
     #[ORM\Column(type: "string", length: 50, unique: true)]
     private string $email;
     
-    #[ORM\OneToOne(targetEntity: Admin::class, mappedBy: "user", cascade: ["persist", "remove"])]
+    #[ORM\OneToOne(targetEntity: Admin::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Admin $admin = null;
 
-    public function __construct(string $name, string $email)
+    public function __construct(string $name, string $email, ?int $id = null)
     {
         $now = Carbon::now();
+
+        parent::__construct($now, $id);
 
         $this->name = $name;
 
         $this->email = $email;
-        
-        $this->createdAt = $now;
-        
-        $this->updatedAt = $now;
     }
 
     public function getName(): string {

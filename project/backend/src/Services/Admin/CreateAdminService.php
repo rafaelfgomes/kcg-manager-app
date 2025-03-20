@@ -3,38 +3,27 @@
 namespace App\Services\Admin;
 
 use App\DTO\Admin\AdminDTO;
+use App\DTO\User\UserDTO;
 use App\Repositories\Admin\Contracts\AdminRepositoryInterface;
-use App\Repositories\User\Contracts\UserRepositoryInterface;
 use App\Services\Admin\Contracts\CreateAdminServiceInterface;
-use Exception;
+use App\Support\Hash;
 
 class CreateAdminService implements CreateAdminServiceInterface
 {
     public function __construct(
-        private AdminRepositoryInterface $adminRepository,
-        private UserRepositoryInterface $userRepository
+        private AdminRepositoryInterface $adminRepository
     ) {}
 
     public function execute(array $data): ?array
     {
-        $user = $this->userRepository->findById($data['user_id']);
+        $password = Hash::make($data['password']);
 
-        if (! $user) {
-            throw new Exception('Erro ao buscar o uauário');
-        }
+        unset($data['password']);
 
-        unset($data['user_id']);
+        $userDTO = UserDTO::fillUserEntity($data);
 
-        $data['user'] = $user;
+        $newAdmin = $this->adminRepository->createNewAdmin($userDTO, $password);
 
-        $newAdmin = AdminDTO::fillAdminEntity($data);
-
-        $admin = $this->adminRepository->create($newAdmin);
-
-        if (! $admin) {
-            return null;
-        }
-
-        return AdminDTO::fillDTOfromEntity($admin);
+        return AdminDTO::fillDTOfromEntity($newAdmin);
     }
 }

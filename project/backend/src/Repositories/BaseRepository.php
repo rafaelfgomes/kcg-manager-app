@@ -31,6 +31,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
         $this->entityManager->persist($model);
 
         $this->entityManager->flush();
+
+        return $model;
+    }
+
+    public function createWithoutFlush(object $model): object
+    {
+        $this->entityManager->persist($model);
         
         return $model;
     }

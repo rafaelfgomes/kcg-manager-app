@@ -21,6 +21,15 @@ abstract class Model
     #[ORM\Column(type: "datetime", name: "deleted_at", nullable: true)]
     protected ?DateTime $deletedAt = null;
 
+    public function __construct(DateTime $now, ?int $id = null)
+    {
+        $this->id = $id;
+
+        $this->createdAt = $now;
+
+        $this->updatedAt = $now;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
