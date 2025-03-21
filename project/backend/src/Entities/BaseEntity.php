@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
-abstract class Model
+abstract class BaseEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
