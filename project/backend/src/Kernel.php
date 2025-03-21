@@ -1,6 +1,6 @@
 <?php
 
-namespace Config;
+namespace App;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

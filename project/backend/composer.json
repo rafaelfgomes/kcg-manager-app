@@ -4,9 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Config\\": "config/",
-            "Migrations\\": "database/migrations"
+            "App\\": "src/"
         },
         "classmap": [
             "src/"

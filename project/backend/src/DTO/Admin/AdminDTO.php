@@ -2,7 +2,7 @@
 
 namespace App\DTO\Admin;
 
-use App\Models\Admin;
+use App\Entities\Admin;
 
 class AdminDTO
 {

@@ -1,7 +1,5 @@
 <?php
 
-$connectionParams = require_once rootPath() . '/database/config.php';
-
 return [
     'table_storage' => [
         'table_name' => 'doctrine_migration_versions',

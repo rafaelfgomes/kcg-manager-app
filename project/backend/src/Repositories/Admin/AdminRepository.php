@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin;
+use App\Entities\Admin;
 use App\Repositories\Admin\Contracts\AdminRepositoryInterface;
 use App\Repositories\BaseRepository;
 use Doctrine\ORM\EntityManager;
