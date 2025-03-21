@@ -3,11 +3,7 @@
 require __DIR__ . '/../bootstrap.php';
 
 use App\Kernel;
-use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
-use Doctrine\Migrations\Configuration\Migration\ConfigurationArray;
-use Doctrine\Migrations\DependencyFactory;
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+use Database\DatabaseEntityManager;
 use Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,20 +18,7 @@ Dotenv::createUnsafeImmutable(rootPath())->load();
 date_default_timezone_set(env('TIMEZONE'));
 
 try {
-    $entityManager = require rootPath() . '/database/config.php';
-
-    // Criar a configuração de migrations
-    $migrationsConfig = require rootPath() . '/migrations.php';
-
-    $configuration = new ConfigurationArray($migrationsConfig);
-
-    // Criar a `DependencyFactory`
-    $dependencyFactory = DependencyFactory::fromEntityManager(
-        $configuration,
-        new ExistingEntityManager($entityManager)
-    );
-
-    $kernel = new Kernel($entityManager);
+    $kernel = new Kernel(DatabaseEntityManager::create());
 
     $container = $kernel->getContainer();
 

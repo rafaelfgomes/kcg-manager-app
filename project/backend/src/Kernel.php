@@ -23,12 +23,12 @@ class Kernel {
         return $this->container;
     }
 
-    // Automatically register classes from Models, Services, Repositories ans Controllers folder
+    // Automatically register classes from Entities, Services, Repositories ans Controllers folder
     private function registerServices(): void {
         $directories = [
             'Repositories' => 'App\Repositories',
             'Services' => 'App\Services',
-            'Models' => 'App\Models',
+            'Entities' => 'App\Entities',
             'Controllers' => 'App\Controllers',
             'DTO' => 'App\DTO'
         ];

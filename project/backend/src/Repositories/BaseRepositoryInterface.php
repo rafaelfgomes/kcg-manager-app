@@ -10,9 +10,9 @@ interface BaseRepositoryInterface
 
     public function findByEmail(string $email): ?object;
     
-    public function create(object $model): object;
+    public function create(object $entity): object;
     
     public function update(): bool;
     
-    public function delete(object $model): bool;
+    public function delete(object $entity): bool;
 }

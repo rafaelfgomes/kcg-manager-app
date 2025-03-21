@@ -35,20 +35,20 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->repository->findOneBy(['email' => $email]);
     }
     
-    public function create(object $model): object
+    public function create(object $entity): object
     {
-        $this->entityManager->persist($model);
+        $this->entityManager->persist($entity);
 
         $this->entityManager->flush();
 
-        return $model;
+        return $entity;
     }
 
-    public function createWithoutFlush(object $model): object
+    public function createWithoutFlush(object $entity): object
     {
-        $this->entityManager->persist($model);
+        $this->entityManager->persist($entity);
         
-        return $model;
+        return $entity;
     }
     
     public function update(): bool
@@ -58,9 +58,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return true;
     }
     
-    public function delete(object $model): bool
+    public function delete(object $entity): bool
     {
-        $this->entityManager->remove($model);
+        $this->entityManager->remove($entity);
         
         $this->entityManager->flush();
 
