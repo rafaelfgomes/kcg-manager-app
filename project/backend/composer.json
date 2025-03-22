@@ -8,7 +8,8 @@
             "Database\\": "database/"
         },
         "classmap": [
-            "src/"
+            "src/",
+            "database"
         ],
         "files": [
             "helpers/functions.php",
@@ -36,7 +37,8 @@
         "symfony/finder": "^7.2",
         "symfony/error-handler": "^7.2",
         "doctrine/migrations": "^3.8",
-        "nesbot/carbon": "^3.8"
+        "nesbot/carbon": "^3.8",
+        "doctrine/dbal": "^4.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^12.0"

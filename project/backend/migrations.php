@@ -9,7 +9,7 @@ return [
         'execution_time_column_name' => 'execution_time',
     ],
     'migrations_paths' => [
-        'Database\Migrations' => 'database/Migrations', // Place where the migrations is saved
+        'Database\Migrations' => 'database/migrations', // Place where the migrations is saved
     ],
     'all_or_nothing' => true,
     'transactional' => true,
