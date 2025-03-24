@@ -23,6 +23,13 @@ final class Version20250322174624 extends AbstractMigration
         ProceduresTable::class,
     ];
 
+    private const DROP_CREATE_SEQUENCE = [
+        PhonesTable::class,
+        CustomersTable::class,
+        AdminsTable::class,
+        ProceduresTable::class,
+    ];
+
     public function getDescription(): string
     {
         return 'Create initial dabatase structure';
@@ -43,6 +50,12 @@ final class Version20250322174624 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        foreach (self::DROP_CREATE_SEQUENCE as $classTable) {
+            $class = new $classTable($schema);
 
+            call_user_func([$class, 'create']);
+
+            unset($class);
+        }
     }
 }

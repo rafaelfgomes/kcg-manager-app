@@ -13,11 +13,9 @@ abstract class AbstractTable
         protected Schema $schema,
         protected string $tableName
     ) {
-        if (! $this->schema->hasTable($tableName)) {
-            $this->table = $this->schema->createTable($tableName);
-        }
-        
-        $this->table->addColumn('id', 'bigint', ['autoincrement' => true]); 
+        $this->table = $this->schema->createTable($tableName);
+
+        $this->table->addColumn('id', 'bigint', ['autoincrement' => true]);
     }
 
     abstract public function create(): void;

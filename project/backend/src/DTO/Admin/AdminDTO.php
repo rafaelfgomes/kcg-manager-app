@@ -7,6 +7,7 @@ use App\Entities\Admin;
 class AdminDTO
 {
     public function __construct(
+        public readonly ?int $id,
         public readonly string $name,
         public readonly string $email
     ) {}
@@ -14,6 +15,7 @@ class AdminDTO
     public static function fillDatafromEntity(Admin $admin): array
     {
         $adminDTO = new self(
+            id: $admin->getId(),
             name: $admin->getName(),
             email: $admin->getEmail()
         );

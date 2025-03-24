@@ -59,4 +59,20 @@ $routes->add(
 # Admin routes (fim)
 #####
 
+#####
+# Procedures routes
+#####
+$routes->add('procedures.all', createRoute('/api/procedures', 'Procedure\GetAllProceduresController'));
+
+$routes->add(
+    'procedure.create',
+    createRoute(
+        '/api/procedures',
+        'Procedure\CreateProcedureController',
+        [Request::METHOD_POST]
+    )
+);
+#####
+# Procedures routes (fim)
+#####
 return $routes;
