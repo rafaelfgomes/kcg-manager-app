@@ -2,20 +2,20 @@
 
 namespace App\Controllers\Api\Customer;
 
-use App\Services\Customer\Contracts\GetCustomerByEmailServiceInterface;
+use App\Services\Customer\Contracts\GetCustomerServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetCustomerByEmailController
 {
     public function __construct(
-        private GetCustomerByEmailServiceInterface $getCustomerByEmailService
+        private GetCustomerServiceInterface $getCustomerService
     ) {}
 
     public function __invoke(string $email): JsonResponse
     {
         try {
-            $response = $this->getCustomerByEmailService->execute($email);
+            $response = $this->getCustomerService->byEmail($email);
 
             return new JsonResponse($response);
         } catch (Exception $e) {

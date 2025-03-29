@@ -30,7 +30,8 @@ class Kernel {
             'Services' => 'App\Services',
             'Entities' => 'App\Entities',
             'Controllers' => 'App\Controllers',
-            'DTO' => 'App\DTO'
+            'DTO' => 'App\DTO',
+            'Collections' => 'App\Collections',
         ];
 
         foreach ($directories as $folder => $namespace) {

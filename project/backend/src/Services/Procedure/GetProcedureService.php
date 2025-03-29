@@ -2,14 +2,15 @@
 
 namespace App\Services\Procedure;
 
-use App\DTO\Customer\ProcedureCollection;
+use App\Collections\ProcedureCollection;
 use App\Repositories\Procedure\Contracts\ProcedureRepositoryInterface;
 use App\Services\Procedure\Contracts\GetProcedureServiceInterface;
 
 class GetProcedureService implements GetProcedureServiceInterface
 {
     public function __construct(
-        private ProcedureRepositoryInterface $procedureRepository
+        private ProcedureRepositoryInterface $procedureRepository,
+        private ProcedureCollection $procedureCollection
     ) {}
 
     public function all(): ?array
@@ -20,6 +21,6 @@ class GetProcedureService implements GetProcedureServiceInterface
             return null;
         }
 
-        return ['procedures' => ProcedureCollection::get($procedures)];
+        return ['procedures' => $this->procedureCollection->get($procedures)];
     }
 }

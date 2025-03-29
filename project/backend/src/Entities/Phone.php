@@ -47,4 +47,9 @@ class Phone extends BaseEntity
     {
         return $this->number;
     }
+
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
 }

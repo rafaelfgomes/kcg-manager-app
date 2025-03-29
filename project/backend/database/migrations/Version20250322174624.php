@@ -6,6 +6,7 @@ namespace Database\Migrations;
 
 use Database\Migrations\Tables\AdminsTable;
 use Database\Migrations\Tables\CustomersTable;
+use Database\Migrations\Tables\PackagesTable;
 use Database\Migrations\Tables\PhonesTable;
 use Database\Migrations\Tables\ProceduresTable;
 use Doctrine\DBAL\Schema\Schema;
@@ -16,18 +17,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20250322174624 extends AbstractMigration
 {
-    private const TABLE_CREATE_SEQUENCE = [
+    private const CREATE_TABLES_SEQUENCE = [
         AdminsTable::class,
         CustomersTable::class,
         PhonesTable::class,
         ProceduresTable::class,
+        PackagesTable::class,
     ];
 
-    private const DROP_CREATE_SEQUENCE = [
+    private const DROP_TABLES_SEQUENCE = [
         PhonesTable::class,
         CustomersTable::class,
         AdminsTable::class,
         ProceduresTable::class,
+        PackagesTable::class,
     ];
 
     public function getDescription(): string
@@ -38,7 +41,7 @@ final class Version20250322174624 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        foreach (self::TABLE_CREATE_SEQUENCE as $classTable) {
+        foreach (self::CREATE_TABLES_SEQUENCE as $classTable) {
             $class = new $classTable($schema);
 
             call_user_func([$class, 'create']);
@@ -50,10 +53,10 @@ final class Version20250322174624 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        foreach (self::DROP_CREATE_SEQUENCE as $classTable) {
+        foreach (self::DROP_TABLES_SEQUENCE as $classTable) {
             $class = new $classTable($schema);
 
-            call_user_func([$class, 'create']);
+            call_user_func([$class, 'drop']);
 
             unset($class);
         }

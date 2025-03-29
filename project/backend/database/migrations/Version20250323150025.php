@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Migrations;
 
-use App\DTO\Admin\AdminDTO;
 use App\Support\Hash;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;

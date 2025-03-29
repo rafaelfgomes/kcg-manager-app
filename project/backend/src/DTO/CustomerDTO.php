@@ -1,21 +1,21 @@
 <?php
 
-namespace App\DTO\Customer;
+namespace App\DTO;
 
-use App\DTO\Phone\PhoneDTO;
 use App\Entities\Customer;
+use App\Support\PhoneNumber;
 
-class CustomerDTO
+class CustomerDTO implements DTOInterface
 {
     public function __construct(
-        public readonly ?int $id,
-        public readonly string $name,
-        public readonly string $email,
-        public readonly iterable $phones
+        public readonly ?int $id = null,
+        public readonly ?string $name = null,
+        public readonly ?string $email = null,
+        public readonly ?iterable $phones = null,
     ) {
     }
 
-    public static function fillDatafromEntity(Customer $customer): array
+    public function fillDatafromEntity(object $customer): array
     {
         $phones = [];
 
@@ -24,7 +24,7 @@ class CustomerDTO
                 continue;
             }
 
-            array_push($phones, PhoneDTO::fullPhoneNumber($phone));
+            array_push($phones, PhoneNumber::full($phone));
         }
 
         return (array) new self(
@@ -35,7 +35,7 @@ class CustomerDTO
         );
     }
 
-    public static function fillEntity(array $data): Customer
+    public function fillEntity(array $data): object
     {
         return new Customer(
             name: $data['name'],

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\DTO\Admin;
+namespace App\DTO;
 
 use App\Entities\Admin;
 
-class AdminDTO
+class AdminDTO implements DTOInterface
 {
     public function __construct(
-        public readonly ?int $id,
-        public readonly string $name,
-        public readonly string $email
+        public readonly ?int $id = null,
+        public readonly ?string $name = null,
+        public readonly ?string $email = null,
     ) {}
 
-    public static function fillDatafromEntity(Admin $admin): array
+    public function fillDatafromEntity(object $admin): array
     {
         $adminDTO = new self(
             id: $admin->getId(),
@@ -23,7 +23,7 @@ class AdminDTO
         return (array) $adminDTO;
     }
 
-    public static function fillEntity(array $data): Admin
+    public function fillEntity(array $data): object
     {
         return new Admin(
             name: $data['name'],
