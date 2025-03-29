@@ -4,5 +4,5 @@ namespace App\Services\Package\Contracts;
 
 interface GetPackageServiceInterface
 {
-    public function all(): ?array;
+    public function getAllPackages(): ?array;
 }

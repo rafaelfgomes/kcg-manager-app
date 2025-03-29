@@ -13,9 +13,9 @@ class GetPackageService implements GetPackageServiceInterface
         private PackageCollection $packageCollection
     ) {}
 
-    public function all(): ?array
+    public function getAllPackages(): ?array
     {
-        $packages = $this->packageRepository->getAll();
+        $packages = $this->packageRepository->getAllPackagesWithProcedures();
 
         if (! $packages) {
             return null;

@@ -20,11 +20,11 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
     public function createNewCustomer(Customer $customer, ArrayCollection $phones): Customer
     {
         return $this->entityManager->wrapInTransaction(function () use ($customer, $phones) {
-            $this->entityManager->persist($customer);
-
             foreach ($phones as $phone) {
-                $this->entityManager->persist($phone);
+                $customer->addPhone($phone);
             }
+
+            $this->entityManager->persist($customer);
 
             $this->entityManager->flush();
 

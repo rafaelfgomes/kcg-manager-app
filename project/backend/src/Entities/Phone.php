@@ -10,10 +10,10 @@ class Phone extends BaseEntity
 {
     public function __construct(
         #[ORM\Column(type: "integer")]
-        private string $country,
+        private int $country,
 
         #[ORM\Column(type: "integer", nullable: true)]
-        private string $code,
+        private int $code,
 
         #[ORM\Column(type: "string", length: 9)]
         private string $number,
@@ -33,23 +33,23 @@ class Phone extends BaseEntity
         $this->number = $number;
     }
 
-    public function getCountryCode()
+    public function getCountryCode(): int
     {
         return $this->country;
     }
 
-    public function getLocalCode()
+    public function getLocalCode(): int
     {
         return $this->code;
     }
 
-    public function getPhoneNumber()
+    public function getPhoneNumber(): string
     {
         return $this->number;
     }
 
-    public function getCustomer()
+    public function setCustomer(Customer $customer): void
     {
-        return $this->customer;
+        $this->customer = $customer;
     }
 }

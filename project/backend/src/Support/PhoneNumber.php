@@ -14,11 +14,11 @@ class PhoneNumber
             $phoneMask,
             $phone->getCountryCode(),
             $phone->getLocalCode(),
-            self::format($phone->getPhoneNumber())
+            self::formatCellphone($phone->getPhoneNumber())
         );
     }
 
-    private static function format(string $phoneNumber) {
+    private static function formatCellphone(string $phoneNumber) {
         $firstPhonePart = substr($phoneNumber, 0, 5);
 
         $secondPhonePart = substr($phoneNumber, -4);

@@ -2,6 +2,8 @@
 
 namespace App\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -13,7 +15,10 @@ class Procedure extends BaseEntity
         private string $name,
 
         #[ORM\Column(type: "decimal", precision: 8, scale: 2)]
-        private string $price,
+        private float $price,
+
+        #[ORM\ManyToMany(targetEntity: Package::class, mappedBy: "procedures")]
+        private Collection $packages = new ArrayCollection(),
 
         ?int $id = null)
     {
@@ -24,13 +29,25 @@ class Procedure extends BaseEntity
         $this->price = $price;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getPrice()
+    public function getPrice(): float
     {
         return $this->price;
+    }
+
+    public function getPackages(): Collection
+    {
+        return $this->packages;
+    }
+
+    public function addPackage(Package $package): void
+    {
+        if (! $this->packages->contains($package)) {
+            $this->packages->add($package);
+        }
     }
 }

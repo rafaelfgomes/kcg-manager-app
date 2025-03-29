@@ -6,6 +6,7 @@ namespace Database\Migrations;
 
 use Database\Migrations\Tables\AdminsTable;
 use Database\Migrations\Tables\CustomersTable;
+use Database\Migrations\Tables\PackagesProceduresTable;
 use Database\Migrations\Tables\PackagesTable;
 use Database\Migrations\Tables\PhonesTable;
 use Database\Migrations\Tables\ProceduresTable;
@@ -23,10 +24,12 @@ final class Version20250322174624 extends AbstractMigration
         PhonesTable::class,
         ProceduresTable::class,
         PackagesTable::class,
+        PackagesProceduresTable::class
     ];
 
     private const DROP_TABLES_SEQUENCE = [
         PhonesTable::class,
+        PackagesProceduresTable::class,
         CustomersTable::class,
         AdminsTable::class,
         ProceduresTable::class,

@@ -17,7 +17,7 @@ abstract class BaseEntity
     protected DateTime $createdAt;
 
     #[ORM\Column(type: "datetime", name: "updated_at", nullable: true)]
-    protected DateTime $updatedAt;
+    protected ?DateTime $updatedAt = null;
     
     #[ORM\Column(type: "datetime", name: "deleted_at", nullable: true)]
     protected ?DateTime $deletedAt = null;
@@ -39,7 +39,7 @@ abstract class BaseEntity
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

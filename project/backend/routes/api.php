@@ -75,4 +75,21 @@ $routes->add(
 #####
 # Procedures routes (fim)
 #####
+
+#####
+# Packages routes
+#####
+$routes->add('packages.all', createRoute('/api/packages', 'Package\GetAllPackagesController'));
+
+$routes->add(
+    'package.create',
+    createRoute(
+        '/api/packages',
+        'Package\CreatePackageController',
+        [Request::METHOD_POST]
+    )
+);
+#####
+# Procedures routes (fim)
+#####
 return $routes;

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -17,7 +18,7 @@ class Customer extends BaseEntity
         private string $email,
         
         #[ORM\OneToMany(mappedBy: "customer", targetEntity: Phone::class, cascade: ["persist", "remove"])]
-        private iterable $phones = new ArrayCollection(),
+        private Collection $phones = new ArrayCollection(),
 
         ?int $id = null)
     {
@@ -38,8 +39,15 @@ class Customer extends BaseEntity
         return $this->email;
     }
 
-    public function getPhones(): iterable
+    public function getPhones(): Collection
     {
         return $this->phones;
+    }
+
+    public function addPhone(Phone $phone): void
+    {
+        $this->phones->add($phone);
+
+        $phone->setCustomer($this);
     }
 }

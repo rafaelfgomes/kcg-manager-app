@@ -11,15 +11,27 @@ class PackageDTO implements DTOInterface
         public readonly ?string $name = null,
         public readonly ?int $sessions = null,
         public readonly ?int $price = null,
+        public readonly ?iterable $procedures = null,
     ) {}
 
     public function fillDatafromEntity(object $package): array
     {
+        $procedures = [];
+
+        foreach ($package->getProcedures() as $procedure) {
+            if (empty($procedure)) {
+                continue;
+            }
+
+            array_push($procedures, $procedure->getName());
+        }
+
         $packageDTO = new self(
             id: $package->getId(),
             name: $package->getName(),
             sessions: $package->getSessions(),
-            price: $package->getPrice()
+            price: $package->getPrice(),
+            procedures: $procedures
         );
 
         return (array) $packageDTO;
