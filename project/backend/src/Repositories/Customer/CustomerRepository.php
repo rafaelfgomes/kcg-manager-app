@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Customer;
 
-use App\DTO\Phone\PhoneCollection;
 use App\Entities\Customer;
 use App\Repositories\BaseRepository;
 use App\Repositories\Customer\Contracts\CustomerRepositoryInterface;

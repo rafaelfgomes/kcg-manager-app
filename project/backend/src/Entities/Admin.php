@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "admins")]
-class Admin extends BaseEntity
+class Admin extends BaseEntityWithTimestamps
 {
     public function __construct(
-        #[ORM\Column(type: "string", length: 150)]
+        #[ORM\Column(type: "string", length: 80)]
         private string $name,
 
         #[ORM\Column(type: "string", length: 50, unique: true)]

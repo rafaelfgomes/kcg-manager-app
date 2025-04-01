@@ -4,16 +4,10 @@ namespace App\DTO;
 
 use App\Entities\Customer;
 use App\Entities\Phone;
+use App\Support\PhoneNumber;
 
 class PhoneDTO
 {
-    public function __construct(
-        public readonly ?int $id = null,
-        public readonly ?int $country = null,
-        public readonly ?int $local = null,
-        public readonly ?string $number = null,
-    ) {}
-
     public function fillEntity(array $data, Customer $customer): object
     {
         return new Phone(

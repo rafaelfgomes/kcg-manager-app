@@ -6,6 +6,7 @@ use App\Services\Customer\Contracts\CreateCustomerServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateCustomerController
 {
@@ -20,7 +21,7 @@ class CreateCustomerController
 
             $response = $this->createCustomerService->execute($data);
 
-            return new JsonResponse($response);
+            return new JsonResponse($response, Response::HTTP_CREATED);
         } catch (Exception $e) {
             throw $e;
         }

@@ -18,7 +18,7 @@ function getHtmlTemplate(?string $message = ''): string {
         <head>
             <meta charset=\"UTF-8\">
             <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-            <title>Backend</title>
+            <title>KCG App Backend API</title>
         </head>
         <body>
             <h3>$text</h3>

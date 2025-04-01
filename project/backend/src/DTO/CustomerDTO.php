@@ -24,7 +24,13 @@ class CustomerDTO implements DTOInterface
                 continue;
             }
 
-            array_push($phones, PhoneNumber::full($phone));
+            $phoneArray = [
+                'id' => $phone->getId(),
+                'number' => PhoneNumber::full($phone),
+                'is_main_phone' => $phone->getMainNumber(),
+            ];
+
+            array_push($phones, $phoneArray);
         }
 
         return (array) new self(

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "phones")]
-class Phone extends BaseEntity
+class Phone extends BaseEntityWithTimestamps
 {
     public function __construct(
         #[ORM\Column(type: "integer")]
@@ -22,6 +22,12 @@ class Phone extends BaseEntity
         #[ORM\JoinColumn(name: "customer_id", referencedColumnName: "id", nullable: false)]
         private Customer $customer,
 
+        #[ORM\Column(type: "boolean")]
+        private int $confirmed = 0,
+
+        #[ORM\Column(type: "boolean", name: "main_number")]
+        private int $mainNumber = 0,
+
         ?int $id = null)
     {
         parent::__construct($id);
@@ -31,6 +37,8 @@ class Phone extends BaseEntity
         $this->code = $code;
         
         $this->number = $number;
+
+        $this->customer = $customer;
     }
 
     public function getCountryCode(): int
@@ -48,8 +56,13 @@ class Phone extends BaseEntity
         return $this->number;
     }
 
-    public function setCustomer(Customer $customer): void
+    public function getConfirmed(): int
     {
-        $this->customer = $customer;
+        return $this->confirmed;
+    }
+
+    public function getMainNumber(): int
+    {
+        return $this->mainNumber;
     }
 }

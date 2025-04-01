@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "packages")]
-class Package extends BaseEntity
+class Package extends BaseEntityWithTimestamps
 {
     public function __construct(
         #[ORM\Column(type: "string", length: 150)]

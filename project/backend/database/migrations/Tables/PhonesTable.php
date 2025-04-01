@@ -23,6 +23,8 @@ class PhonesTable extends AbstractTable
             ->addNewColumn('country', 'integer')
             ->addNewColumn('code', 'integer')
             ->addNewColumn('number', 'string', ['length' => 9])
+            ->addNewColumn('confirmed', 'tinyint')
+            ->addNewColumn('main_phone', 'tinyint')
             ->addNewColumn('customer_id', 'bigint');
         
         $this->addAllTimestampsColumns();

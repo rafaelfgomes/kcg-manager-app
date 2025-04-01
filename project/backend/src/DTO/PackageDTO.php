@@ -23,7 +23,12 @@ class PackageDTO implements DTOInterface
                 continue;
             }
 
-            array_push($procedures, $procedure->getName());
+            $procedureArray = [
+                'id' => $procedure->getId(),
+                'name' => $procedure->getName(),
+            ];
+
+            array_push($procedures, $procedureArray);
         }
 
         $packageDTO = new self(

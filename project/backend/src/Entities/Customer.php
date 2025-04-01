@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: "customers")]
-class Customer extends BaseEntity
+class Customer extends BaseEntityWithTimestamps
 {
     public function __construct(
-        #[ORM\Column(type: "string", length: 70)]
+        #[ORM\Column(type: "string", length: 80)]
         private string $name,
         
         #[ORM\Column(type: "string", length: 50, unique: true)]
@@ -27,15 +27,15 @@ class Customer extends BaseEntity
         $this->name = $name;
 
         $this->email = $email;
-
-        $this->phones = $phones;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getEmail(): string {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
@@ -47,7 +47,5 @@ class Customer extends BaseEntity
     public function addPhone(Phone $phone): void
     {
         $this->phones->add($phone);
-
-        $phone->setCustomer($this);
     }
 }

@@ -14,6 +14,8 @@ abstract class AbstractPivotTable
         protected string $tableName
     ) {
         $this->table = $this->schema->createTable($tableName);
+
+        $this->table->addColumn('id', 'bigint', ['autoincrement' => true]);
     }
 
     abstract public function create(): void;

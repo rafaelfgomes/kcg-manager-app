@@ -6,6 +6,7 @@ use App\Services\Procedure\Contracts\CreateProcedureServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateProcedureController
 {
@@ -20,7 +21,7 @@ class CreateProcedureController
 
             $response = $this->createProcedureService->execute($data);
 
-            return new JsonResponse($response);
+            return new JsonResponse($response, Response::HTTP_CREATED);
         } catch (Exception $e) {
             throw $e;
         }
